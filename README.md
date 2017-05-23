@@ -30,6 +30,7 @@ My project includes the following files:
 ##### 2. Submission includes functional code
 
 The model.py has data augmentation and the Nvidia model, as functions.
+(used the course material for generator code)
 
 Using the ``drive.py`` and the model generated (``model.h5``), executing the following:
 ```sh
