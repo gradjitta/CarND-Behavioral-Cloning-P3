@@ -99,6 +99,7 @@ For data augmentation, I flipped images and angles, as shown
 ![alt text][image6]
 
 Further data augmentation is done on the dataset from left and right cameras, as shown below (the figure shows RGB images but in reality the YUV images are fed in every batch).
+
 ![alt text][image7]
 
 
