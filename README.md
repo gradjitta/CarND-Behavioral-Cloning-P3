@@ -25,7 +25,7 @@ My project includes the following files:
 * model.h5 containing a trained convolution neural network (that worked)
 * CarND-Behavioral-Cloning.ipynb Notebook, where I worked on the project
 * README.md  writeup of the project
-* Video.mp4  The final video generated from the trained model ``model.h5``
+* video.mp4  The final video generated from the trained model ``model.h5``
 
 
 ##### 2. Submission includes functional code
@@ -47,7 +47,7 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-The input image size considered was 66x200, after required cropping (to focus the road ) and resizing the original image. The model uses Nvidia model as described in [the paper](https://arxiv.org/pdf/1604.07316.pdf). It consists of a convolution neural network with 9 layers (5 convolutional layers and 3 fully connected layers). The first 3 convolutional layers use strided 5x5 kernels followed by the convolutional layers that use non-strided 3x3 filters. I used Picking an already working model architecture and trying to train a model that navigates the entire track is in-fact time-saving decision, as building a good architecture would require lot of experimentation.
+The input image size considered was 66x200, after required cropping (to focus on the road ) and resizing the original image. The model uses Nvidia model as described in [the paper](https://arxiv.org/pdf/1604.07316.pdf). It consists of a convolution neural network with 9 layers (5 convolutional layers and 3 fully connected layers). The first 3 convolutional layers use strided 5x5 kernels followed by the convolutional layers that use non-strided 3x3 filters. I picked an already working model architecture and tried to train a model that navigates the entire track and building a good architecture from scratch would require lot of experimentation.
 
 Layer (type)                     |Output Shape          |Param #     |Connected to                     
 --- | --- | --- | ---
@@ -86,7 +86,7 @@ The training data used:
 * Dataset from driving in center lane
 * Dataset for recovery from road edges
 
-### Data collection and Training Strategy
+### Data collection and Training
 
 
 I first used the dataset provided by Udacity and the Nvidia model to see where
@@ -108,14 +108,9 @@ the model fails in general.  The following are the places where the model fails:
 
 ![alt text][image12]
 
-Next, I added more data, as suggested in the course tips, by recording 2
-laps of center lane driving. This should help in solving the problems faced by
-the shadow and steep turns. In order to make the car navigate successfully on the
-bridge I added another dataset where I try to recover the car driving towards the rails. This needs to be done since the model learns
-to only go straight on the bridge. Using this recovery data, it helped to successfully
-navigate the bridge. After adding all the images, I had around 12791 images. Next, I used these images to generate more artificial/augmented data.
+Next, I added more data, as suggested in the course tips, by recording 2 laps of center lane driving. This should help in solving the problems faced by the shadow and steep turns. In order to make the car navigate successfully on the bridge, I added another dataset where I try to recover the car driving towards the rails. This needs to be done since the model learns to only go straight on the bridge. Using this recovery data, it helped to successfully navigate the bridge. After adding all the images, I had around 12791 images. Next, I used these images to generate more artificial/augmented data.
 
-For data augmentation, I flipped images and angles, as shown
+For data augmentation, the images were fliped and its corresponding seering angles were modified accordingly.
 
 ![alt text][image6]
 
@@ -128,7 +123,10 @@ Further data augmentation is done on the dataset from left and right cameras. Th
 Finally, the dataset I used was around 12791 x 6. Preprocessing and shuffling of these images was done within the python generator function. I cropped the images along its height (top 60 and bottom 25 pixels), followed by resizing the image to 200 x 66
 (choice of using YUV and 200 x 66 images is from the Nvidia paper)
 
-The dataset training/validation split I used is 80/20. Inorder to get the final model that was successful, I ran the training for 5 epochs. The plot of training and validation errors vs epochs is shown below.
+The dataset training/validation split I used is 80/20. 
+
+#### Training 
+Inorder to get the final model that was successful, I ran the training for 5 epochs. The plot of training and validation errors vs epochs is shown below.
 
 ![alt text][image8]
 
