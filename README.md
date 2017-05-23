@@ -23,7 +23,6 @@ My project includes the following files:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode (modifed version)
 * model.h5 containing a trained convolution neural network (that worked)
-* CarND-Behavioral-Cloning.ipynb Notebook, where I worked on the project
 * README.md  writeup of the project
 * video.mp4  The final video generated from the trained model ``model.h5``
 
