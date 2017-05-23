@@ -125,7 +125,7 @@ def nvidia_model():
     return model
     
 
-# Dataset used
+# Dataset used, uncomment with the right folder path 
 #dirname_udacity = 'udacity/data'
 #dirname_recover = 'recover/data'
 #dirname_recover2 = 'recover2/data'
