@@ -119,13 +119,13 @@ For data augmentation, I flipped images and angles, as shown
 
 ![alt text][image6]
 
-Further data augmentation is done on the dataset from left and right cameras, as shown below (the figure shows RGB images but in reality the YUV images are fed in every batch).
+Further data augmentation is done on the dataset from left and right cameras. The figures below are from center, left, and right cameras (the figures are shown in RGB, but in reality the YUV images are fed in every batch).
 
 
 ![alt text][image7]
 
 
-Finally, the dataset I used was around 12791 x 6. Preprocessing and shuffling of these images was done within the python generator function. Here, I cropped the images along its height (top 60 and bottom 25 pixels), followed by resizing the image to 200 x 66
+Finally, the dataset I used was around 12791 x 6. Preprocessing and shuffling of these images was done within the python generator function. I cropped the images along its height (top 60 and bottom 25 pixels), followed by resizing the image to 200 x 66
 (choice of using YUV and 200 x 66 images is from the Nvidia paper)
 
 The dataset training/validation split I used is 80/20. Inorder to get the final model that was successful, I ran the training for 5 epochs. The plot of training and validation errors vs epochs is shown below.
