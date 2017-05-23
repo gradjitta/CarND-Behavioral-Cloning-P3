@@ -61,7 +61,8 @@ def generator(samples, batch_size = 100):
 
 def img_add(names, angle, correction, flip):
     '''
-    The function that creates more data and flipping it
+    The function that creates more data
+    (augmentation by flip)
     '''
     images = []
     angles = []
@@ -147,4 +148,4 @@ checkpoint = ModelCheckpoint('output/model1-{epoch:03d}.h5',monitor='val_loss',v
 history_object = model.fit_generator(train_generator, samples_per_epoch = 600, validation_data = validation_generator, 
 nb_val_samples = len(validation_samples), nb_epoch = 5, callbacks=[checkpoint])
 # save trained model as model.h5
-model.save('output/model1.h5')
+model.save('output/model.h5')
