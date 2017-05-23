@@ -81,9 +81,10 @@ The model used an Adam optimizer so tuning its learning rate is done implicitly.
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ...
-
-For details about how I created the training data, see the next section.
+The training data used:
+* Dataset provided by Udacity
+* Dataset from driving in center lane
+* Dataset for recovery from road edges
 
 ### Data collection and Training Strategy
 
