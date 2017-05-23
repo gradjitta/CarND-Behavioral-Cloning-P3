@@ -16,7 +16,6 @@
 ##### I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-###Files Submitted & Code Quality
 
 #### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
@@ -31,8 +30,7 @@ My project includes the following files:
 
 ##### 2. Submission includes functional code
 
-The model.py has data augmentation and the Nvidia model,
-as functional definitions.
+The model.py has data augmentation and the Nvidia model, as functions.
 
 Using the ``drive.py`` and the model generated (``model.h5``), executing the following:
 ```sh
@@ -50,6 +48,28 @@ The model.py file contains the code for training and saving the convolution neur
 #### 1. An appropriate model architecture has been employed
 
 The input image size considered was 66x200, after required cropping (to focus the road ) and resizing the original image. The model uses Nvidia model as described in [the paper](https://arxiv.org/pdf/1604.07316.pdf). It consists of a convolution neural network with 9 layers (5 convolutional layers and 3 fully connected layers). The first 3 convolutional layers use strided 5x5 kernels followed by the convolutional layers that use non-strided 3x3 filters. I used Picking an already working model architecture and trying to train a model that navigates the entire track is in-fact time-saving decision, as building a good architecture would require lot of experimentation.
+
+Layer (type)                     |Output Shape          |Param #     |Connected to                     
+--- | --- | --- | ---
+lambda_1 (Lambda)                |(None, 66, 200, 3)  |0       |lambda_input_1[0][0]
+convolution2d_1 (Convolution2D)  |(None, 31, 98, 24)  |1824    |lambda_1[0][0]
+convolution2d_2 (Convolution2D)  |(None, 14, 47, 36)  |21636    |convolution2d_1[0][0]   
+convolution2d_3 (Convolution2D)  |(None,  5, 22, 48)  |43248    |convolution2d_2[0][0]   
+convolution2d_4 (Convolution2D)  |(None,  3, 20, 64)  |27712    |convolution2d_3[0][0]   
+convolution2d_5 (Convolution2D)  |(None,  1, 18, 64)  |36928    |convolution2d_4[0][0]
+flatten_2 (Flatten)              |(None, 1152)        |  0      |     convolution2d_5[0][0]           
+dense_6 (Dense)                  |(None, 1164)        |  1342092|     flatten_2[0][0]                  
+activation_5 (Activation)        |(None, 1164)        |  0      |     dense_6[0][0]                    
+dropout_4 (Dropout)              |(None, 1164)        |  0      |     activation_5[0][0]               
+dense_7 (Dense)                  |(None, 100)         |  116500 |     dropout_4[0][0]                  
+activation_6 (Activation)        |(None, 100)         |  0      |     dense_7[0][0]                    
+dense_8 (Dense)                  |(None, 50)          |  5050   |     activation_6[0][0]               
+activation_7 (Activation)        |(None, 50)          |  0      |     dense_8[0][0]                    
+dense_9 (Dense)                  |(None, 10)          |  510    |     activation_7[0][0]               
+activation_8 (Activation)        |(None, 10)          |  0      |     dense_9[0][0]                    
+dense_10 (Dense)                 |(None, 1)           |  11     |     activation_8[0][0]  
+Total params : 1,595,511|||
+
 
 #### 2. Attempts to reduce overfitting in the model
 
@@ -71,7 +91,7 @@ For details about how I created the training data, see the next section.
 I first used the dataset provided by Udacity and the Nvidia model to see where
 the model fails in general.  The following are the places where the model fails:
 
-1) The shadow
+1) Shadow
 
 ![alt text][image9]
 
@@ -79,11 +99,11 @@ the model fails in general.  The following are the places where the model fails:
 
 ![alt text][image10]
 
-3) Steep turn 1
+3) Steep turn left
 
 ![alt text][image11]
 
-4) Steep turn 2
+4) Steep turn right
 
 ![alt text][image12]
 
@@ -99,6 +119,8 @@ For data augmentation, I flipped images and angles, as shown
 ![alt text][image6]
 
 Further data augmentation is done on the dataset from left and right cameras, as shown below (the figure shows RGB images but in reality the YUV images are fed in every batch).
+
+
 ![alt text][image7]
 
 
@@ -110,4 +132,4 @@ The dataset training/validation split I used is 80/20. Inorder to get the final 
 
 
 #### Video
-Also find video.mp4 file in the repository. 
+Also find video.mp4 file in the repository.
